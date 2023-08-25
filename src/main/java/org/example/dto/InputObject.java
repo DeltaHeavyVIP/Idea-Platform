@@ -1,4 +1,4 @@
-package org.example;
+package org.example.dto;
 
 import com.fasterxml.jackson.annotation.JsonSetter;
 import lombok.AllArgsConstructor;

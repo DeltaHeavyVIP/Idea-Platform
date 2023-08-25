@@ -1,9 +1,15 @@
-package org.example;
+package org.example.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.example.config.LocalTimeDeserializer;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,16 +29,20 @@ public class Ticket {
     private String destinationName;
 
     @JsonSetter("departure_date")
-    private String departureDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yy")
+    private LocalDate departureDate;
 
     @JsonSetter("departure_time")
-    private String departureTime;
+    @JsonDeserialize(using = LocalTimeDeserializer.class)
+    private LocalTime departureTime;
 
     @JsonSetter("arrival_date")
-    private String arrivalDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yy")
+    private LocalDate arrivalDate;
 
     @JsonSetter("arrival_time")
-    private String arrivalTime;
+    @JsonDeserialize(using = LocalTimeDeserializer.class)
+    private LocalTime arrivalTime;
 
     @JsonSetter("carrier")
     private String carrier;
